@@ -1,0 +1,13 @@
+- 요청하는 법
+
+    1) 웹브라우저 주소줄에 주소 입력 + enter  : GET방식
+
+    2)  버튼 : form -get ( header만 있음, body없음 → url에 파라미터로 노출)
+
+            : form -post ( body에 정보 저장하여 요청)
+
+    3) link : GET방식
+    
+    ⇒ HTTP method : get, post 두가지 방식
+
+⇒ getMethod()으로 방식 판별하여 doXXX메서드 호출함
