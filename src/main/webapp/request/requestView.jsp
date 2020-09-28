@@ -59,14 +59,15 @@
 		 <label>password : </label>
 		 <input name="pass" type="password" value="pass1234">
 		 <br>
-		 <input id="getRadio" type="radio" value="GET">GET
-		 <input id="postRadio" type="radio" value="POST">POST
+		 <input id="getRadio" name="method" type="radio" value="GET">GET
+		 <input id="postRadio" name="method" type="radio" value="POST">POST
+		 <!-- name속성을 일치시켜줘야 라디오 한단위로 묶임 -->
 		 <br>
 		 <input type="submit" value="전송">
 	 </form>
 	 
 	 GET POST 두가지를 선택할 수 있는 라디오 버튼을 만들어서
-	 FORM 전송시 사용자가 GET, POST 방ㅅ힉을 지정할 수 있도록 
+	 FORM 전송시 사용자가 GET, POST 방식을 지정할 수 있도록 
 
 
 	 
