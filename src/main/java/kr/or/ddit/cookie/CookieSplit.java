@@ -22,7 +22,6 @@ public class CookieSplit {
 	// 쿠키이름1=쿠키값1; 쿠키이름2=쿠키값2; ........... 형태로 구성됨
 	// 구성된 쿠키 이름과 값은 상황에 따라 변경될 수 있음.
 	private String cookieString = "USERNM=brown; REMEMBERME=Y; TEST=T; ";
-	public Set<String> keySet;
 	public static void main(String[] args) {
 		CookieSplit cookieSplit = new CookieSplit();
 		
