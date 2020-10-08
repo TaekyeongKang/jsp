@@ -3,59 +3,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<style>
-	#cookiePrint{
-		border : 1px solid black;
-	}
-</style>
- <script>
-	function getCookieValue(cookieName){
-		var search = cookieName + "=";
-		var cookie = document.cookie;
-		var cookies = cookie.split("; ");
-		console.log("cookies: "+cookies);
-		var cookieSplit =  new Array();
-		var cookieNames =  new Array();
-		var cookieVlaues =  new Array();
-		for(i=0; i<cookies.length; i++){
-			console.log("cookies "+i+" : "+cookies[i]);
-			cookieSplit.push(cookies[i].split("="));
-			console.log("cookieSplit "+i+" : "+cookieSplit);
-			console.log("cookieSplit ["+i+"][0]"+cookieSplit[i][0]);
-			console.log("cookieSplit ["+i+"][1]"+cookieSplit[i][1]);
-			cookieNames.push(cookieSplit[i][0]);
-			cookieVlaues.push(cookieSplit[i][1]);
-		}	
-		console.log("cookieNames : "+cookieNames);
-		console.log("cookieVlaues : "+cookieVlaues);
-
-		
-		for(i=0; i<cookieNames.length; i++){
-			console.log("(파라미터) : "+cookieName);
-			if(cookieName==cookieNames[i]){
-				return cookieVlaues[i];
-			} 
-			
-		}
-		return "";
-	}
-
-	window.onload = function(){
-		usernm = getCookieValue("USERID");
-		rememberme = getCookieValue("REMEMBERME");
-		notexist = getCookieValue("NOTEXISTS_COOKIE");
-		console.log("usernm :"+usernm);
-		console.log("rememberme :"+rememberme);
-		console.log("notexist :"+notexist);
-		res = "username : "+usernm+"<br>";
-		res += "rememberme : "+rememberme+"<br>";
-		res += "notexist : "+notexist+"<br>";
-		document.getElementById('cookiePrint').innerHTML=res;
-	}
-	
- </script>
- 
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -71,24 +19,100 @@
 
     <!-- Custom styles for this template -->
     <link href="<%=request.getContextPath() %>/css/signin.css" rel="stylesheet">
-  </head>
+    
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/js.cookie-2.2.1.min.js"></script>
+ <script>
+ 	$(function(){
+ 	 	// sing in 버튼이 클릭됐을 때 이벤트 핸들러
+ 	 	$('button').on('click',function(){
+			if($("input[type=checkbox]").prop("checked")){
+				Cookies.set("REMEMBERME","Y");
+				Cookies.set("USERID",$('#inputEmail').val());
+			}else{
+				Cookies.remove("REMEMBERME");
+				Cookies.remove("USERID");
+			}
+			// submit
+			$('form').submit();
+ 	 	 })
+		if(Cookies.get("REMEMBERME")=="Y"){
+			$("input[type=checkbox]").prop("checked",true);
+			$("#inputEmail").val(Cookies.get("USERID"));
+		}
 
+
+
+ 	})
+
+	function getCookieValue(cookieName){
+		var cookie = document.cookie;
+		var cookies = cookie.split("; ");
+		var cookieSplit =  new Array();
+		var cookieNames =  new Array();
+		var cookieVlaues =  new Array();
+		for(i=0; i<cookies.length; i++){
+			cookieSplit.push(cookies[i].split("="));
+			cookieNames.push(cookieSplit[i][0]);
+			cookieVlaues.push(cookieSplit[i][1]);
+		}	
+
+		
+		for(i=0; i<cookieNames.length; i++){
+			if(cookieName==cookieNames[i]){
+				return cookieVlaues[i];
+			} 
+			
+		}
+		return "";
+	}
+
+	
+
+	function setCookie(cookieName, cookieValue, expires){
+		var today = new Date();
+		// 현재 날짜에서 미래로 +expires 만큼 한 날짜 구하기
+		today.setDate(today.getDate()+expires);
+		
+		document.cookie = cookieName + "=" + cookieValue + "; path=/; expires=" + today.toGMTString() + "; "
+		console.log(document.cookie);
+	}
+
+	function deleteCookie(cookieName){
+		setCookie(cookieName,"",-1);
+	}
+
+	window.onload = function(){
+		usernm = getCookieValue("USERID");
+		rememberme = getCookieValue("REMEMBERME");
+// 		if(rememberme == "Y"){  // js 버전
+// 			document.getElementById('check').checked = true;
+// 			document.getElementById('inputEmail').value = usernm;
+// 		}
+		notexist = getCookieValue("NOTEXISTS_COOKIE");
+
+	}
+	
+ </script>
+  </head>
+ 
+  
   <body>
 
     <div class="container" >
 
-      <form class="form-signin">
+      <form class="form-signin" action="<%=request.getContextPath() %>/login" method="POST">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <input type="email" id="inputEmail" name="userId" class="form-control" placeholder="Email address" required autofocus value="brown">
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <input type="password" id="inputPassword"  name="password" class="form-control" placeholder="Password" required value="passBrown">
         <div class="checkbox">
           <label>
-            <input type="checkbox" value="remember-me"> Remember me
+            <input id="check" type="checkbox" value="remember-me" > Remember me
           </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" type="button">Sign in</button>
       </form>
 
     </div> <!-- /container -->

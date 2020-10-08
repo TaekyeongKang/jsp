@@ -8,7 +8,7 @@ import org.junit.Test;
 
 public class CookieSplitTest {
 	@Test
-	public void getCookieValueTest() {
+	public void getCookieValueSuccessTest() {
 		/***Given***/
 		CookieSplit cookieSplit = new CookieSplit();
 		
@@ -23,6 +23,16 @@ public class CookieSplitTest {
 		assertEquals("", XXXXValue);
 		
 		
+	}
+	
+	@Test
+	public void getCookieValueFailTest() {
+		/***Given***/
+		CookieSplit cookieSplit = new CookieSplit();
+
+		/***When***/
+
+		/***Then***/
 	}
 
 }
