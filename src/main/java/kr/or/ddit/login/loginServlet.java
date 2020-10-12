@@ -43,11 +43,11 @@ public class loginServlet extends HttpServlet {
 		MemberVO memberVO = memberService.getMember(userId);
 		
 		// db에 등록되지 않은 경우 or 비밀번호가 불일치할 경우-> login 페이지 반환
-		if(memberVO == null || !memberVO.getPassword().equals(password)) {
+		if(memberVO == null || !memberVO.getPass().equals(password)) {
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		}
 		// 비밀번호가 일치할 경우 ->  main 페이지로 이동
-		else if(memberVO.getPassword().equals(password)){
+		else if(memberVO.getPass().equals(password)){
 			request.getSession().setAttribute("S_MEMBER", memberVO);
 			request.getRequestDispatcher("/main.jsp").forward(request, response);
 		} 
