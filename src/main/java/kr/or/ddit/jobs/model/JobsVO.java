@@ -1,9 +1,7 @@
 package kr.or.ddit.jobs.model;
 
 
-import java.util.Date;
 
-import javax.xml.crypto.Data;
 
 public class JobsVO {
 	private String job_id;
