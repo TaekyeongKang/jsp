@@ -1,4 +1,3 @@
-<%@page import="kr.or.ddit.jobs.model.JobsVO"%>
 <%@page import="kr.or.ddit.member.model.MemberVO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -35,24 +34,26 @@
 
 <div class="row">
 	<div class="col-sm-8 blog-main">
-		<h2 class="sub-header">JOBS</h2>
+		<h2 class="sub-header">사용자</h2>
 		<div class="table-responsive">
 			<table class="table table-striped">
 				<tr>
-					<th>Job ID</th>
-					<th>Job Title</th>
+					<th>사용자 아이디</th>
+					<th>사용자 이름</th>
+					<th>사용자 별명</th>
+					<th>등록일시</th>
 				</tr>
 				<%
-					List<JobsVO> jobsList = (List<JobsVO>) request.getAttribute("jobsList");
-					for (int i = 0; i < jobsList.size(); i++) {
+					List<MemberVO> memberList = (List<MemberVO>) request.getAttribute("memberList"); 
 				%>
-					<tr>
-						<td><%=jobsList.get(i).getJob_id()%></td>
-						<td><%=jobsList.get(i).getJob_title()%></td>
-					</tr>
-				<%
-					}
-				%>
+					<c:forEach items="${memberList }" var="member">
+						<tr>
+							<td>${member.userid }</td>
+							<td>${member.usernm }</td>
+							<td>${member.alias }</td>
+							<td>${member.reg_dt }</td>
+						</tr>
+					</c:forEach>
 			</table>
 		</div>
 

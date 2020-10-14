@@ -49,7 +49,7 @@
 	
 	
 	 
-	 <form action="<%=request.getContextPath() %>/request/getRequestResponse.jsp" >
+	 <form action="${pageContext.request.contextPath }/request/getRequestResponse.jsp" >
 		 <label>user id : </label>
 		 <input name="userId" type="text" value="브라운">
 		 <br>

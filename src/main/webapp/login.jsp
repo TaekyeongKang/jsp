@@ -15,13 +15,13 @@
     <title>Signin Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="<%=request.getContextPath() %>/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="<%=request.getContextPath() %>/css/signin.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/css/signin.css" rel="stylesheet">
     
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/js/js.cookie-2.2.1.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath }/js/js.cookie-2.2.1.min.js"></script>
  <script>
  	$(function(){
  	 	// sing in 버튼이 클릭됐을 때 이벤트 핸들러
@@ -101,7 +101,7 @@
 
     <div class="container" >
 
-      <form class="form-signin" action="<%=request.getContextPath() %>/login" method="POST">
+      <form class="form-signin" action="${pageContext.request.contextPath }/login" method="POST">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="email" id="inputEmail" name="userId" class="form-control" placeholder="Email address" required autofocus value="brown">
