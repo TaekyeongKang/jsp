@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import kr.or.ddit.db.MybatisUtil;
 import kr.or.ddit.member.model.MemberVO;
+import kr.or.ddit.member.model.PageVO;
 
 public class MemberDao implements MemberDaoI{
 
@@ -39,6 +40,7 @@ public class MemberDao implements MemberDaoI{
 		
 		List<MemberVO> memberList = sqlSession.selectList("member.selectAllMember"); // sql id 랑 method 이름 동일하게 
 	
+		
 		/* select 제외 다른 쿼리 실행시에는 db 데이터에 변경이 있으므로  commit / rollback 해주어야 함.
 		sqlSession.commit();
 		sqlSession.rollback();
@@ -47,6 +49,30 @@ public class MemberDao implements MemberDaoI{
 		sqlSession.close();
 		
 		return memberList;
+	}
+
+	@Override
+	public List<MemberVO> selectMemberPageList(SqlSession sqlSession, PageVO pageVO) {
+		
+		//SqlSession sqlSession = MybatisUtil.getSqlSession();	
+		
+		//List<MemberVO> memberList = sqlSession.selectList("member.selectMemberPageList", pageVO);
+		
+		//sqlSession.close();
+		
+		return sqlSession.selectList("member.selectMemberPageList", pageVO);
+	}
+
+	@Override
+	public int selectMemberTotalCnt(SqlSession sqlSession) {
+		
+		//SqlSession sqlSession = MybatisUtil.getSqlSession();
+		
+		//int totalCnt = sqlSession.selectOne("member.selectMemberTotalCnt");
+		
+		//sqlSession.close();
+
+		return sqlSession.selectOne("member.selectMemberTotalCnt");
 	}
 	
 	

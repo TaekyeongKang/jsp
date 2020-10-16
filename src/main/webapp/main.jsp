@@ -16,7 +16,9 @@
 <title>Jsp</title>
 
 <%@ include file="/layout/commonLib.jsp" %>
-
+<script>
+		
+</script>
 </head>
 
 <body>

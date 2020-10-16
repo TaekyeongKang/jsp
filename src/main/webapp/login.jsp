@@ -106,7 +106,7 @@
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="email" id="inputEmail" name="userId" class="form-control" placeholder="Email address" required autofocus value="brown">
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword"  name="password" class="form-control" placeholder="Password" required value="passBrown">
+        <input type="password" id="inputPassword"  name="password" class="form-control" placeholder="Password" required value="brownPass">
         <div class="checkbox">
           <label>
             <input id="check" type="checkbox" value="remember-me" > Remember me
