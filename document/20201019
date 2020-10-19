@@ -1,0 +1,14 @@
+2-14 Filter
+Filter : 요청된 URL을 처리하는 servlet으로 요청처리를 전달하기 전에
+		 보안, 로깅, 공통된 로직을 처리할 때 사용하는 모듈
+
+Servlet 생성 방법 : HttpServlet 클래스를 상송(extends)
+Filter 	생성 방법 : Filter interface 구현
+	- life Cycle : 	Filter interface		Servlet
+					init					init
+					doFilter				doXXX
+					destroy					destroy
+
+Servlet 등록 : web.xml - servlet, servlet-mapping,  @WebServlet
+Filter 등록  : web.xml - filter,  filter-mapping,   @WebFilter
+

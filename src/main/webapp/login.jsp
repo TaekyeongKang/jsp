@@ -1,3 +1,4 @@
+<%@page import="org.apache.tomcat.util.http.Cookies"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -10,7 +11,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+<!--     <link rel="icon" href="../../favicon.ico"> -->
 
     <title>Signin Template for Bootstrap</title>
 
@@ -40,7 +41,7 @@
 			$("input[type=checkbox]").prop("checked",true);
 			$("#inputEmail").val(Cookies.get("USERID"));
 		}
-
+	
 
 
  	})
@@ -98,7 +99,6 @@
  
   
   <body>
-
     <div class="container" >
 
       <form class="form-signin" action="${pageContext.request.contextPath }/login" method="POST">

@@ -50,20 +50,28 @@
   	<url-pattern>/dbConnectionPool</url-pattern>
   </servlet-mapping>
   
-  
+  <!-- Filter 등록 -->
+  <filter>
+  	<filter-name>requestCounterFilter</filter-name>
+  	<filter-class>kr.or.ddit.filter.RequestCounterFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>requestCounterFilter</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
   
   
   
   <!-- 에러 페이지 설정 -->
-  <error-page>
-  	<exception-type>java.lang.ArithmeticException</exception-type>
-  	<location>/error/ArithmeticException.jsp</location>
-  </error-page>
+<!--   <error-page> -->
+<!--   	<exception-type>java.lang.ArithmeticException</exception-type> -->
+<!--   	<location>/error/ArithmeticException.jsp</location> -->
+<!--   </error-page> -->
   
-  <error-page>
-  	<exception-type>java.lang.RuntimeException</exception-type>
-  	<location>/error/runtimeException.jsp</location>
-  </error-page>
+<!--   <error-page> -->
+<!--   	<exception-type>java.lang.RuntimeException</exception-type> -->
+<!--   	<location>/error/runtimeException.jsp</location> -->
+<!--   </error-page> -->
   
   
   <error-page>

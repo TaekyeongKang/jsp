@@ -22,3 +22,12 @@ JSTL 국제화
 로케일 = 언어코드[_국가코드]  // 국가코드는 생략 가능
 리소스번들명_로케일.properties
               
+              
+jstl : fmt
+<fmt:formatNumber> : 숫자 => 포맷팅된 문자열로 변경 
+<fmt:parseNumber> : 포맷팅된 문자열로 변경 => 숫자
+
+<fmt:formatDate> : 날짜 => 포맷팅된 문자열로 변경 
+<fmt:parseDate> : 포맷팅된 문자열로 변경 => 숫자
+
+              
