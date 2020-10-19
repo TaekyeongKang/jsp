@@ -2,10 +2,14 @@ package kr.or.ddit.member.service;
 
 import static org.junit.Assert.*;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import kr.or.ddit.member.dao.MemberDao;
 import kr.or.ddit.member.dao.MemberDaoI;
@@ -13,7 +17,9 @@ import kr.or.ddit.member.model.MemberVO;
 import kr.or.ddit.member.model.PageVO;
 
 public class MemberServiceTest {
-
+	
+	private static final Logger logger = LoggerFactory.getLogger(MemberServiceTest.class);
+	
 	@Test
 	public void getMemberTest() {
 		/***Given***/
@@ -55,6 +61,15 @@ public class MemberServiceTest {
 		assertEquals(7, memberList.size()); // 이것도 누군가 db에 자료를 입력하는 순간 fail -> test 코드 작성 시 db 초기화 하는 방법 필요 
 		// assertEquals("brown", memberList.get(0).getUserid());  // 순서를 정의하지 않았기 때문에 올바르지는 않음
 		assertEquals(3, pages);
+	}
+	
+	@Test
+	public void localeListTest() {
+		Locale[]  locales = SimpleDateFormat.getAvailableLocales();
+		for(Locale locale : locales) {
+			//logger.debug(locale.toString());
+			logger.debug("{}", locale);
+		}
 	}
 	
 
