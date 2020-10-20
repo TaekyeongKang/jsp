@@ -41,7 +41,7 @@ public class loginCheckFilter implements Filter {
 		//login 경로로 요청하는 것은 사용자가 로그인을 시도하고 있는 것이므로 
 		// 세션 체크 업시 servlet 혹은 다른 filter로 요청을 위임시켜준다.
 		if(uri.equals("/login") ||
-		   uri.endsWith(".js") ||
+		   uri.endsWith(".js")  ||
 		   uri.endsWith(".css") ||
 		   uri.endsWith(".map")) {
 			chain.doFilter(request, response);
