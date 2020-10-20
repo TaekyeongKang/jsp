@@ -35,6 +35,7 @@ public class loginServlet extends HttpServlet {
 	// login 화면을 클라이언트에게 응답으로 생성
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.debug("LoginServlet doGet");
+		logger.debug("UNT_CD parameter : {}", request.getParameter("UNT_CD"));
 		request.getRequestDispatcher("/login.jsp").forward(request, response);
 	}
 

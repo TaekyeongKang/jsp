@@ -10,3 +10,31 @@ chain.doFilter
 1. RequestFounterFilter 전처리 부분 - chain.doFilter 호출 전
 2. loginServlet doGet
 3. RequestFounterFilter 후처리 부분 - chain.doFilter 호출 후
+
+
+
+Wrapper
+int ==> Integer
+HttpServletRequest ==> 새로운 객체로 생성
+	이유: parameter 수정은 HttpServletRequest 객체에서는 불가능 
+		 request.getParameter() 메소드는 존재 (getter)
+ 		 request.setParameter() 메소드는 없음 (setter) *******
+ 		 ==> 파라미터를 개발자가 임의로 수정하거나 추가할 수 없다.  
+ 		 	==> 파라미터를 수정하기 위해서는 
+ 		 		HttpServletRequest 객체를 이용하여 새로운 wrapper 클래스를 생성
+ 		 		기존 request 객체를 대체
+		
+		 request.getAttribute() 메소드는 존재 (getter)
+		 request.setAttribute() 메소드는 존재 (setter)
+		 
+		 
+filter/requestParameter.jsp 에서
+request.getParameterMap() 메소드를 통해 얻는 Map 객체에 파라미터를 임의로 추가, 수정하는 작업이 불가능
+	∵ java.lang.IllegalStateException: No modifications are allowed to a locked ParameterMap
+
+=> request.getParameterMap() 를 통해 새로운 map 객체를 생성하고, 해당 map객체에 필요한 파라미터를 추가,
+	이후 프로세스에서는 새롭게 만든 map 객체로 전달	
+	
+	1. map객체를 조작할 Filter
+	2. HttpServletRequest 객체를 대신할 wrapper 생성
+		how) HttpServletRequestWrapper 클래스를 상속받으면 됨
