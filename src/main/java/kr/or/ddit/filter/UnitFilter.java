@@ -10,10 +10,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * Servlet Filter implementation class UnitFilter
- */
-@WebFilter("/UnitFilter")
+//@WebFilter("/UnitFilter")
 public class UnitFilter implements Filter {
 
 	public void destroy() {

@@ -31,6 +31,8 @@ HttpServletRequest ==> 새로운 객체로 생성
 filter/requestParameter.jsp 에서
 request.getParameterMap() 메소드를 통해 얻는 Map 객체에 파라미터를 임의로 추가, 수정하는 작업이 불가능
 	∵ java.lang.IllegalStateException: No modifications are allowed to a locked ParameterMap
+	
+
 
 => request.getParameterMap() 를 통해 새로운 map 객체를 생성하고, 해당 map객체에 필요한 파라미터를 추가,
 	이후 프로세스에서는 새롭게 만든 map 객체로 전달	
@@ -38,3 +40,41 @@ request.getParameterMap() 메소드를 통해 얻는 Map 객체에 파라미터�
 	1. map객체를 조작할 Filter
 	2. HttpServletRequest 객체를 대신할 wrapper 생성
 		how) HttpServletRequestWrapper 클래스를 상속받으면 됨
+		
+		
+		
+event listener ==> envent handler
+jquery를 활용하여
+버튼이 클릭 되었을 때 특정 로직 실행하도록 event handler 등록
+	 ex) $('#btn).on('click',function(){});  에서 function(){} 이 event handler
+
+웹서버에서는 web.xml 에 리스너 등록
+<listener>
+	<listener-class>패키지.클래스명</listener-class>
+</listener>
+
+서버에도 감지할 수 있는 이벤트 종류가 존재
+	- life cycle : scope 객체가 생성되고, 소멸될 때 이벤트 감지
+	- attribute  : scope 객체의 속성이 추가되거나 수정,변경 될 때 이벤트 감지
+	- 기타 등등...
+	
+						|		  LIFE CYCLE			|			ATTRIBUTE
+	-----------------------------------------------------------------------------------------------							
+		request			|	ServletRequestListener 		|	ServletRequestAttributeListener 		클래스 구현
+		session			|	HttpSessionListener			|	HttpSessionAttributeListener					
+		application		|	ServletContextListener		|	ServletContextAttributeListener						
+	-----------------------------------------------------------------------------------------------
+		* HttpSessionListener 같은 경우 사용자를 대략적으로 카운트 하는데 사용함 (정확한 수치는 아님)
+		
+		
+logout 기능 추가
+/logout url 요청시
+
+세션에 저장된 속성 제거 : session.invalidate();
+응답 화면 : login.jsp
+
+SessionAttributeListener.attributeRemoved
+-> userMap 에서 해당 사용자 정보 삭제
+=> userMap.jsp 에서 로그아웃한 사용자가 안나오는 것 확인
+
+		
