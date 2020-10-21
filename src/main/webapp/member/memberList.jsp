@@ -19,11 +19,15 @@
 
 <%@ include file="/layout/commonLib.jsp" %>
 
-
 <script>
-	$(function(){
-		pageSize = $('#pageSize').val();
-	})
+	$(document).ready(function(){
+		$('#memberList tr').on('click',function(){
+			// data-userid
+			var userid = $(this).data("userid");
+
+			document.location="/member?userid="+ userid;
+		})
+	})	
 </script>
 </head>
 
@@ -44,10 +48,6 @@
 		<h2 class="sub-header">사용자</h2>
 		<div class="table-responsive">
 			<table class="table table-striped">
-					<select id="pageSize" name="pageSize">
-						<option value="5" selected>5</option>
-						<option value="10">10</option>
-					</select>
 				<tr>
 					<th>사용자 아이디</th>
 					<th>사용자 이름</th>
@@ -62,8 +62,9 @@
 				  !!!!!!!!!!!!!!!!!!!!!!!!   생략가능    !!!!!!!!!!!!!!!!!!!!!!!!
 				 
 				 -->
+				 <tbody id="memberList">	<!-- <tbody> : 테이블의 내용만 crud 하고 싶을 때 분리할 수 있는 간단한 방법 -->
 					<c:forEach items="${memberList }" var="member">
-						<tr>
+						<tr data-userid="${member.userid }">
 							<td>${member.userid }</td>
 							<td>${member.usernm }</td>
 							<td>${member.alias }</td>
@@ -71,6 +72,7 @@
 							<td><fmt:formatDate value="${member.reg_dt }"/></td>
 						</tr>
 					</c:forEach>
+				</tbody>
 			</table>
 		</div>
 		<a class="btn btn-default pull-right">사용자 등록</a>
