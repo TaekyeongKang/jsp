@@ -17,6 +17,17 @@
 
 <%@ include file="/layout/commonLib.jsp" %>
 
+<script>
+	$(function(){
+		$('#updateBtn').on('click',function(){
+			var userid = "${memberVO.userid}";
+			document.location="/memberUpdate?userid="+ userid;
+		})
+	})
+	
+	
+</script>
+
 </head>
 
 <body>
@@ -48,9 +59,9 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="userNm" class="col-sm-2 control-label">사용자 아이디</label>
+						<label for="user" class="col-sm-2 control-label">사용자 아이디</label>
 						<div class="col-sm-10">
-							<label class="control-label">${memberVO.userid }</label>
+							<label id="userid" class="control-label">${memberVO.userid }</label>
 						</div>
 					</div>
 
@@ -102,7 +113,7 @@
 
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<button type="submit" class="btn btn-default">사용자 수정</button>
+							<button id="updateBtn" type="button" class="btn btn-default">사용자 수정</button>
 						</div>
 					</div>
 				</form>

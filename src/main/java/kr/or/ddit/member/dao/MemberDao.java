@@ -11,7 +11,7 @@ import kr.or.ddit.member.model.PageVO;
 public class MemberDao implements MemberDaoI{
 
 	@Override
-	public MemberVO getMember(String userId) {
+	public MemberVO getMember(String userid) {
 		// 원래는 db에서 데이터를 조회하는 로직이 있어야 하나
 		// 우리는 controller 기능에 집중 => 하드 코딩을 통해 dao, service는 간략하게 넘어간다
 		// = Dao의 기능을 흉내내는 Mock(가짜)객체 생성
@@ -26,7 +26,7 @@ public class MemberDao implements MemberDaoI{
 		// 한 건  : selectOne
 		// 여러 건 : selectList
 		
-		MemberVO memberVO = (MemberVO)sqlSession.selectOne("member.getMember",userId);
+		MemberVO memberVO = (MemberVO)sqlSession.selectOne("member.getMember",userid);
 		
 		sqlSession.close();	// session 객체 사용 완료시 닫아주어 반납하기
 		
@@ -73,6 +73,61 @@ public class MemberDao implements MemberDaoI{
 		//sqlSession.close();
 
 		return sqlSession.selectOne("member.selectMemberTotalCnt");
+	}
+
+	@Override
+	public int insertMember(MemberVO memberVO) {
+		
+		SqlSession sqlSession = MybatisUtil.getSqlSession();
+		
+		// insert  query로 인해 영향을 받은 행의 값을 리턴
+		int insertCnt = 0; 
+		try {
+			insertCnt = sqlSession.insert("member.insertMember", memberVO); 
+		} catch (Exception e) {
+
+		}
+		
+		// insert 쿼리는 select 쿼리와 다르게 테이블을 변경하는 쿼리
+		// -> 조건으로  commit / rollback 처리 해주어야 함
+		if(insertCnt == 1) { // 한건이 삽입되었을 때 commit
+			sqlSession.commit();
+		}
+		else { // 한건이 아니라면 정상적이지 않음 -> rollback
+			sqlSession.rollback();
+		}
+		
+		sqlSession.close();
+		
+		return insertCnt;
+	}
+
+	@Override
+	public int deleteMember(String userid) {
+		SqlSession sqlSession = MybatisUtil.getSqlSession();
+		int deleteCnt = sqlSession.delete("member.deleteMember",userid);
+		if(deleteCnt == 1) {
+			sqlSession.commit();
+		}
+		else {
+			sqlSession.rollback();
+		}
+		sqlSession.close();
+		return deleteCnt;
+	}
+
+	@Override
+	public int updateMember(MemberVO memberVO) {
+		SqlSession sqlSession = MybatisUtil.getSqlSession();
+		int updateCnt = sqlSession.update("member.updateMember",memberVO);
+		if(updateCnt == 1) {
+			sqlSession.commit();
+		}
+		else {
+			sqlSession.rollback();
+		}
+		sqlSession.close();
+		return updateCnt;
 	}
 	
 	

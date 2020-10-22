@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,10 +21,19 @@ public class MemberServiceTest {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MemberServiceTest.class);
 	
+	MemberServiceI memberService;
+	
+	@Before  // 항상 public, void, 인자 xxx
+	public void setup() {
+		memberService = new MemberService();
+		String userid = "ktk";
+		memberService.deleteMember(userid);
+	}
+	
+	
 	@Test
 	public void getMemberTest() {
 		/***Given***/
-		MemberServiceI memberService = new MemberService();
 		String userId = "brown"; 
 		
 		MemberVO answerMemberVO = new MemberVO();
@@ -44,7 +54,6 @@ public class MemberServiceTest {
 	@Test
 	public void selectMemberPageListTest() {
 		/***Given***/
-		MemberServiceI memberService = new MemberService();
 		//int page = 1;
 		PageVO pageVO = new PageVO(1, 7);
 		
@@ -72,5 +81,32 @@ public class MemberServiceTest {
 		}
 	}
 	
+	@Test
+	public void insertMemberTest() {
+		/***Given***/
+		MemberVO memberVO = new MemberVO("ktk", "pass1234", "강태경", "pc-13", "대전 중구 중앙로 76", "영민빌딩 4층 404호", "34940", "d:\\profile\\ktk.png", "ktk.png");
+
+		/***When***/
+		int insertCnt = memberService.insertMember(memberVO);
+		
+		/***Then***/
+		assertEquals(1, insertCnt);
+
+	}
+	
+	@Test
+	public void updateMemberTest() {
+		/***Given***/
+		MemberVO memberVO = new MemberVO("ktk", "pass1234", "강태경", "bbb", "대전 중구 중앙로 76", "영민빌딩 4층 404호", "34940", "d:\\profile\\brown.png", "brown.png");
+
+		/***When***/
+		int updateCnt = memberService.updateMember(memberVO);
+		MemberVO updatedMemberVO = memberService.getMember("ktk");
+		
+		/***Then***/
+		assertEquals("bbb", updatedMemberVO.getAlias());
+
+	}
+
 
 }

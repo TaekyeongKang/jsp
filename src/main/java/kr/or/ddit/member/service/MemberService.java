@@ -17,17 +17,18 @@ public class MemberService implements MemberServiceI {
 
 	private MemberDaoI memberDao;
 	
+	public MemberService() {
+		memberDao = new MemberDao();
 
+	}
 	
 	@Override
 	public MemberVO getMember(String userId) {
-		memberDao = new MemberDao();
 		return memberDao.getMember(userId);
 	}
 
 	@Override
 	public List<MemberVO> selectAllMember() {
-		memberDao = new MemberDao();
 		return memberDao.selectAllMember();
 	}
 
@@ -36,7 +37,6 @@ public class MemberService implements MemberServiceI {
 		
 		SqlSession sqlSession = MybatisUtil.getSqlSession();
 		
-		memberDao = new MemberDao();
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("memberList", memberDao.selectMemberPageList(sqlSession,pageVO));
@@ -49,6 +49,28 @@ public class MemberService implements MemberServiceI {
 		
 		sqlSession.close();
 		return map;
+	}
+
+	@Override
+	public int insertMember(MemberVO memberVO) {
+		
+		int insertCnt = memberDao.insertMember(memberVO);
+		
+		return insertCnt;
+	}
+
+	@Override
+	public int deleteMember(String userid) {
+		
+		int deleteCnt = memberDao.deleteMember(userid);
+		
+		return deleteCnt;
+	}
+
+	@Override
+	public int updateMember(MemberVO memberVO) {
+		int updateCnt = memberDao.updateMember(memberVO);
+		return updateCnt;
 	}
 
 }

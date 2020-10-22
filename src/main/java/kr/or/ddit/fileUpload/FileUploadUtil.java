@@ -1,8 +1,11 @@
 package kr.or.ddit.fileUpload;
 
+
 import kr.or.ddit.filter.loginCheckFilter;
 
 public class FileUploadUtil {
+	
+	
 	//form-data; name="img"; filename="moo.jpg"
 	// ==> moo.jpg
 	
@@ -18,5 +21,21 @@ public class FileUploadUtil {
 			}
 		}
 		return fileName;
+	}
+	
+	// filename : sally.png => png
+	public static String getExtension(String filename) {
+		/* 내코드
+			String extension = filename.substring(filename.lastIndexOf(".")+1);
+			return extension;
+		 */
+		
+		// sem 코드
+		if(filename == null || filename.indexOf(".") == -1) {
+			return "";
+		}
+		else {
+			return filename.split("\\.")[1];
+		}
 	}
 }

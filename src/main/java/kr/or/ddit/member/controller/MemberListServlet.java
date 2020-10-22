@@ -34,7 +34,7 @@ public class MemberListServlet extends HttpServlet {
 		
 		
 		String pageSize_str = request.getParameter("pageSize");
-		int pageSize = pageSize_str == null ? 5 : Integer.parseInt(pageSize_str);
+		int pageSize = pageSize_str == null ? 7 : Integer.parseInt(pageSize_str);
 		request.setAttribute("pageSize", pageSize);
 		
 		
@@ -50,5 +50,9 @@ public class MemberListServlet extends HttpServlet {
 		request.getRequestDispatcher("/member/memberList.jsp").forward(request, response);
 	}
 	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doGet(req, resp);
+	}
 
 }

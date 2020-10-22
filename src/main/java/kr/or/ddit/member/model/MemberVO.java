@@ -13,6 +13,29 @@ public class MemberVO {
 	private String zipcode;
 	private String filename;
 	private String realFilename;
+	
+	
+	public MemberVO() { // 인자가 있는 생성자 선언 -> default  생성자  명시적으로 만들어주기
+		
+	}
+	
+	// 인자가 있는 생성자 선언 (reg_dt는 입력받지 않는다. sysdate)
+	public MemberVO(String userid, String pass, String usernm, String alias, String addr1, String addr2, String zipcode,
+			String filename, String realFilename) {
+		this.userid = userid;
+		this.pass = pass;
+		this.usernm = usernm;
+		this.alias = alias;
+		this.addr1 = addr1;
+		this.addr2 = addr2;
+		this.zipcode = zipcode;
+		this.filename = filename;
+		this.realFilename = realFilename;
+	}
+	
+	
+	
+	
 	public String getUserid() {
 		return userid;
 	}

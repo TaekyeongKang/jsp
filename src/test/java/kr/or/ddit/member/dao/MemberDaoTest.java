@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.junit.Before;
 import org.junit.Test;
 
 import kr.or.ddit.db.MybatisUtil;
@@ -12,11 +13,27 @@ import kr.or.ddit.member.model.MemberVO;
 import kr.or.ddit.member.model.PageVO;
 
 public class MemberDaoTest {
-
+	
+	// 테스트를 할 때 마다 데이터를 계속해서 넣을 수 없음 
+	// 테스트 메소드 실행 사이클: (모든 테스트 메소드)
+	// @BeforClass (static)
+	// 		@Before => @Test => @After
+	// @AfterClass (static)
+	// -> 삭제하는 메서드를 모든 @Test 메서드 전에 일괄적으로 넣는 로직
+	
+	MemberDaoI memberDao;
+	
+	@Before  // 항상 public, void, 인자 xxx
+	public void setup() {
+		memberDao = new MemberDao();
+		String userid = "ktk";
+		memberDao.deleteMember(userid);
+	}
+	
 	@Test
 	public void getMemberTest() {
 		/***Given***/
-		MemberDaoI memberDao = new MemberDao();
+//		MemberDaoI memberDao = new MemberDao();  // filed & @Before 메서드에서 생성
 		String userId = "brown"; 
 		
 		MemberVO answerMemberVO = new MemberVO();
@@ -41,15 +58,12 @@ public class MemberDaoTest {
 		// ==> if(p==v) : true
 		// 동치 : equals
 		
-		
-		
-		
 	}
 	
 	@Test
 	public void selectAllMemberTest() {
 		/***Given***/
-		MemberDaoI memberDao = new MemberDao();
+//		MemberDaoI memberDao = new MemberDao(); // filed & @Before 메서드에서 생성
 		
 		/***When***/
 		List<MemberVO> memberList = memberDao.selectAllMember();
@@ -64,7 +78,7 @@ public class MemberDaoTest {
 	@Test
 	public void selectMemberPageListTest() {
 		/***Given***/
-		MemberDaoI memberDao = new MemberDao();
+//		MemberDaoI memberDao = new MemberDao();	// filed & @Before 메서드에서 생성
 		PageVO pageVO = new PageVO(1, 7);
 		SqlSession sqlSession = MybatisUtil.getSqlSession();
 		//int page=1;
@@ -82,7 +96,7 @@ public class MemberDaoTest {
 	@Test
 	public void selectMemberTotalCntTest() {
 		/***Given***/
-		MemberDaoI memberDao = new MemberDao();
+//		MemberDaoI memberDao = new MemberDao();	// filed & @Before 메서드에서 생성
 		SqlSession sqlSession = MybatisUtil.getSqlSession();
 		/***When***/
 		int totalCnt = memberDao.selectMemberTotalCnt(sqlSession);
@@ -90,6 +104,35 @@ public class MemberDaoTest {
 		/***Then***/
 		assertEquals(15, totalCnt); 
 		
+	}
+	
+	@Test
+	public void insertMemberDaoTest() {
+		/***Given***/
+		MemberDaoI memberDao = new MemberDao();	// filed & @Before 메서드에서 생성
+		MemberVO memberVO = new MemberVO("ktk", "pass1234", "강태경", "pc-13", "대전 중구 중앙로 76", "영민빌딩 4층 404호", "34940", "d:\\profile\\brown.png", "brown.png");
+
+		/***When***/
+		int insertCnt = memberDao.insertMember(memberVO);
+		
+		/***Then***/
+		assertEquals(1, insertCnt);
+
+	}
+	
+	@Test
+	public void updateMemberTest() {
+		/***Given***/
+		MemberDaoI memberDao = new MemberDao();	
+		MemberVO memberVO = new MemberVO("ktk", "pass1234", "강태경", "aaa", "대전 중구 중앙로 76", "영민빌딩 4층 404호", "34940", "d:\\profile\\brown.png", "brown.png");
+
+		/***When***/
+		int updateCnt = memberDao.updateMember(memberVO);
+		MemberVO updatedMemberVO = memberDao.getMember("ktk");
+		
+		/***Then***/
+		assertEquals("aaa", updatedMemberVO.getAlias());
+
 	}
 
 }
