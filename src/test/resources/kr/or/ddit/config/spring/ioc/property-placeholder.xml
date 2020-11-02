@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<context:property-placeholder location="classpath:kr/or/ddit/config/db/db.properties"/>
+	<!-- property-placeholder 가 한개일 필요는 없음 => loaction 속성 안에 "," 붙이고 이어서 쓰면 가능 -->
+	
+	<bean id="dbProperty" class="kr.or.ddit.ioc.DbProperty">
+		<!-- setter -->
+		<property name="driver" value="${jdbc.driver}"></property>
+		<property name="url" value="${jdbc.url}"></property>
+		<property name="user" value="${jdbc.username}"></property>
+			<!-- "jdbc." 이라는 접두어를 붙이지 않고  username 그대로 사용하면 OS 사용자정보에 등록된 username값인 "pc-13"을 가져온다.  -->
+		<property name="pass" value="${jdbc.password}"></property>
+	</bean>
+	
+</beans>
