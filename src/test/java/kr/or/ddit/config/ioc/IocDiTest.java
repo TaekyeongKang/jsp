@@ -45,7 +45,6 @@ public class IocDiTest {
 	@Test
 	public void valueTest() {
 		/***Given***/
-		
 
 		/***When***/
 
