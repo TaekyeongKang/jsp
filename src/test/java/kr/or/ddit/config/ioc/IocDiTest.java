@@ -43,7 +43,7 @@ public class IocDiTest {
 	
 	// person 스프링빈의 age(value), boareRepository(ref) 두 속성에 주입이 잘 되었는지 확인
 	@Test
-	public void valueTest() {
+	public void valueRefTest() {
 		/***Given***/
 
 		/***When***/
@@ -51,7 +51,13 @@ public class IocDiTest {
 		/***Then***/
 		assertEquals(30, person.getAge());
 		assertEquals("내용", person.getBoardRepository().getBoard(1).getContent());
-		
+//		assertEquals("2020-11-03", person.getBirthdate());
+		/*
+		Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'person' defined in class path resource [kr/or/ddit/config/spring/ioc/ioc.xml]: Initialization of bean failed; 
+		nested exception is org.springframework.beans.ConversionNotSupportedException: 
+		Failed to convert property value of type 'java.lang.String' to required type 'java.util.Date' for property 'birthdate'; 
+		nested exception is java.lang.IllegalStateException: Cannot convert value of type 'java.lang.String' to required type 'java.util.Date' for property 'birthdate': no matching editors or conversion strategy found
+		 */
 	}
 	
 	
