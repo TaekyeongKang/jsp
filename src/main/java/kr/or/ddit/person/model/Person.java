@@ -1,11 +1,23 @@
 package kr.or.ddit.person.model;
 
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import kr.or.ddit.board.repository.BoardRepositoryI;
 
 public class Person {
 	private int age;
 	private BoardRepositoryI boardRepository;
+	private Date birthdate;
 	
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	public Date getBirthdate() {
+		return birthdate;
+	}
+	public void setBirthdate(Date birthdate) {
+		this.birthdate = birthdate;
+	}
 	public int getAge() {
 		return age;
 	}
@@ -18,6 +30,5 @@ public class Person {
 	public void setBoardRepository(BoardRepositoryI boardRepository) {
 		this.boardRepository = boardRepository;
 	}
-	
 	
 }
