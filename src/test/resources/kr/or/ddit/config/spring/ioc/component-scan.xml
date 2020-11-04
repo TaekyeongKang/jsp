@@ -12,6 +12,7 @@
 	
 	<!-- @Resource, @Autowired, @Inject : 해당 어노테이션을 작업해주는 스프링 설정 파일
 		 BeanPostProcessor 등록 => 위 어노테이션을 통해 주입하는 과정을 처리해줌
+		 이 기능은 <context:component-scan > 에서도 처리해주지만 관용적으로 쓰는 부분이 크고, 혹시 처리하지 못하는 것이 생길까봐 적어줌.
 	  -->
 	<context:annotation-config  />
 </beans>
