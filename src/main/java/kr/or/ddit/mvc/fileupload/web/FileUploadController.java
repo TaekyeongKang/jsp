@@ -1,4 +1,4 @@
-package kr.or.ddit.fileuploadweb;
+package kr.or.ddit.mvc.fileupload.web;
 
 import java.io.File;
 import java.io.IOException;

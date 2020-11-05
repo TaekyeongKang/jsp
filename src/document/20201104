@@ -59,7 +59,7 @@ public class xxxController{
 	
 	3. 파라미터를 담을 개별 변수 (String userid, String pass)
 	
-	3.5.  bindingResult  : 바인딩 결과를 담는 객체 - 추후 validation 수업 시 진행
+	3.5.  bindingResult  : 바인딩 결과를 담는 객체 - 추후 validation 수업 시 진행 (ex: 비밀번호 길이 체크 등..)
 	
 	4. model / ModelMap / map : 속성을 저장할 객체 (servlet 의 request 객체에 해당 ) 
 	
