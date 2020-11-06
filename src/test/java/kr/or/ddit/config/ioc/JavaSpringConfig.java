@@ -29,7 +29,6 @@ public class JavaSpringConfig {
 		//boardService.setBoardRepository(new BoardRepository());
 										// == 스프링 빈이 아님!! ∵ @Bean 어노테이션이 붙은 메소드를 호출해야 스프링 컨테이너에서 관리되는 
 										//						스프링 빈을 얻을 수 있다. 
-		
 		// 방법 2) 위에 생성한 boardRepository() 메소드 호출
 		boardService.setBoardRepository(boardRepository());
 										// 위에 생성한 boardRepository() 메소드 호출하여 반환된 boardRepository 객체로 세팅

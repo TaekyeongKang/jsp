@@ -34,3 +34,5 @@ redirect
 			 					  but 컨트롤러 -> 컨트롤러 로 요청처리를 forward 할 경우에는 일반적이지 않으므로 명시해주어야 함.
 			 
 		 
+		 
+jsp 프로젝트의 member와 관련된 화면, 기능 spring 프로젝트로 이관

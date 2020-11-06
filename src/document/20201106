@@ -1,0 +1,18 @@
+마이그레이션
+	- ms-sql server ==> oracle
+	- servlet ==> spring controller
+	
+컨트롤러 메소드 인자 설정시 발생할 수 있는 문제점
+	1. primitive type (int, double...) ** String : primitive 타입 아님
+		메소드 (int page)
+		==> page 파라미터가 반드시 존재해야 함
+		
+개발시 고려 사항 : 해당 파라미터가 반드시 전송이 되는가! 를 생각해야 함
+	- 전송 될 경우   : 별다른 조치 없이 사용
+	- 전송 안될 경우 : 1) @RequestParam(name="파라미터명", required=false, defaultValue="")
+				    2) command 객체 사용 	
+				    	: 필드의 값은 인스턴스화함과 동시에 초기화가 됨.
+				    	ex) int a; ==> syso(a)  : 출력 불가
+				    		PageVO pageVO = new PageVO(); ==> syso(pageVO.getPage());  : 0
+				    
+	
