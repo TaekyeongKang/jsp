@@ -44,4 +44,12 @@
 	<!-- 파일 업로드  처리를 위한 multipartResolver 설정 -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 	
+	<!-- 정적자원 매핑 처리
+		1. url 단축을 목적
+		2. WEB-INF :외부에서 접근 불가능한 공간에 저장된 자원을 접근 매핑
+	 -->
+	 <!-- localhost/resources/style.css  로 요청을 하면 loaction에 지정한 곳에 가서 찾아라-->
+	 <!--  -->
+	 <mvc:resources mapping="/resources/**" location="/WEB-INF/views/exception/"></mvc:resources>
+	
 </beans>
