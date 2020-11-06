@@ -12,10 +12,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -25,7 +27,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import kr.or.ddit.fileupload.FileUploadUtil;
 import kr.or.ddit.member.dao.MemberDao;
 import kr.or.ddit.member.dao.MemberDaoI;
+import kr.or.ddit.member.model.JSRMemberVO;
 import kr.or.ddit.member.model.MemberVO;
+import kr.or.ddit.member.model.MemberVoValidataor;
 import kr.or.ddit.member.service.MemberService;
 import kr.or.ddit.member.service.MemberServiceI;
 
@@ -47,9 +51,19 @@ public class MemberRegistController extends HttpServlet {
 	}
 	
 	@RequestMapping("/registProcess")
-	public String registProcess(MemberVO memberVO,
+	public String registProcess(@Valid MemberVO memberVO,BindingResult br,
 								@RequestPart("profile") MultipartFile profile) {
 								// 필드명과 동일하게 객체명을 지정할 경우 @RequestPart("profile") 을 생략해도 가능
+//	public String registProcess(@Valid JSRMemberVO memberVO,BindingResult br,
+//								@RequestPart("profile") MultipartFile profile) {
+		
+		//new MemberVoValidataor().validate(memberVO, br);
+		
+		
+		// 검증을 통과하지 못했으므로 사용자 등록 화면으로 이동
+		if(br.hasErrors()) {
+			return "member/memberRegist";
+		}
 		
 		logger.debug("사용자 등록  파라미터 memberVO : {}", memberVO);
 		

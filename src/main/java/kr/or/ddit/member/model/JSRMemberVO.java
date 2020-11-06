@@ -4,10 +4,13 @@ import java.util.Date;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-public class MemberVO {
+public class JSRMemberVO {
+	
+	
 	private String userid;
 	private String pass;
 	
+
 	// null 이면 안되고, empty 안됨
 	@NotEmpty
 	private String usernm;
@@ -20,12 +23,12 @@ public class MemberVO {
 	private String realFilename;
 	
 	
-	public MemberVO() { // 인자가 있는 생성자 선언 -> default  생성자  명시적으로 만들어주기
+	public JSRMemberVO() { // 인자가 있는 생성자 선언 -> default  생성자  명시적으로 만들어주기
 		
 	}
 	
 	// 인자가 있는 생성자 선언 (reg_dt는 입력받지 않는다. sysdate)
-	public MemberVO(String userid, String pass, String usernm, String alias, String addr1, String addr2, String zipcode,
+	public JSRMemberVO(String userid, String pass, String usernm, String alias, String addr1, String addr2, String zipcode,
 			String filename, String realFilename) {
 		this.userid = userid;
 		this.pass = pass;
@@ -131,7 +134,7 @@ public class MemberVO {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		MemberVO other = (MemberVO) obj;
+		JSRMemberVO other = (JSRMemberVO) obj;
 		if (addr1 == null) {
 			if (other.addr1 != null)
 				return false;

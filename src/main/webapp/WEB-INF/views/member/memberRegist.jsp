@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<!-- form tag 라이브러리 : 에러메세지 관리하는데 사용 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -97,6 +99,9 @@ function initData(){
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="usernm" name="usernm" 
  								placeholder="사용자 이름" value="${param.usernm }">
+ 								<span style="color:red"><form:errors path="memberVO.usernm"></form:errors></span>
+ 								<!-- form 태그에 의해서 에러메시지가 있으면 보여주고 없으면 안보여줌.
+ 								     rejectValue로 설정해둔 값이 넘어오면 에러메세지 있음 -->
 						</div>
 					</div>
 					<div class="form-group">
