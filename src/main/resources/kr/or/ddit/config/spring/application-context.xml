@@ -16,6 +16,8 @@
 	<bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
 	<bean id="profileImgView" class="kr.or.ddit.mvc.view.ProfileImgView"/>
 	<bean id="downloadView" class="kr.or.ddit.mvc.view.DownloadView"/>
+	<bean id="excelView" class="kr.or.ddit.mvc.view.ExcelDownloadView"/>
+	
 	<bean class ="org.springframework.web.servlet.view.BeanNameViewResolver">
 		<property name="order" value="0"></property>
 	</bean>		
