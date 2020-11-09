@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -85,7 +86,8 @@ public class LoginController {
 	// Model : view 객체에서 응답을 생성할 때 참조할 데이터를 담는 객체
 	// 		   jsp/servlet 기반의 request 역할을 담당
 	@RequestMapping("/process")
-	public String process(String userid, String pass, MemberVO memberVO, 
+	public String process(String userid, String pass, MemberVO memberVO,
+						  @RequestBody String body,
 						  HttpSession session, Model model,
 						  @RequestParam(name="email", 
 						  				required=false, 
@@ -95,6 +97,7 @@ public class LoginController {
 		logger.debug("user_id : {}", user_id);
 		MemberVO dbMemberVO = memberService.getMember(userid);
 		logger.debug("LoginController.process().getMember() : {}", dbMemberVO);
+		logger.debug("body : {}", body);
 		
 		// db에서 조회한 사용자 정보가 존재하면 ==> main.jsp로 이동
 		// db에서 조회한 사용자 정보가 존재하지 않으면  ==> login.jsp로 이동
