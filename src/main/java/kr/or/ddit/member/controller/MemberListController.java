@@ -51,7 +51,9 @@ public class MemberListController extends HttpServlet {
 		model.addAttribute("memberList", map.get("memberList"));
 		model.addAttribute("pages", map.get("pages"));
 		logger.debug("page : {} , pageSize : {}, pages : {}", pageVO.getPage(), pageVO.getPageSize(), map.get("pages"));
-		return "member/memberList";
+		//return "member/memberList";
+		// tile 버전 viewName 리턴
+		return "tiles/member/memberListContent";
 	}
 	
 

@@ -47,7 +47,7 @@ public class MemberRegistController extends HttpServlet {
 	@RequestMapping("/memberRegist")
 	public String memberRegist(){
 		
-		return "member/memberRegist";
+		return "tiles/member/memberRegistContent";
 	}
 	
 	@RequestMapping("/registProcess")
@@ -62,7 +62,7 @@ public class MemberRegistController extends HttpServlet {
 		
 		// 검증을 통과하지 못했으므로 사용자 등록 화면으로 이동
 		if(br.hasErrors()) {
-			return "member/memberRegist";
+			return "tiles/member/memberRegistContent";
 		}
 		
 		logger.debug("사용자 등록  파라미터 memberVO : {}", memberVO);
@@ -102,11 +102,12 @@ public class MemberRegistController extends HttpServlet {
 			// memberListServlet 의 doPost()메서드 에서 doGet() 메서드 호출
 			// but 새로고침하면 오류 
 			// redirect  방식
-			return "redirect:/member/memberList";
+			return "redirect:/member/memberRegist";
 		}
 		else {
 			// 사용자가 입력했던 정보를 담은 파라미터를 다시 가져가게끔 설정
-			return "member/memberRegist";
+//			return "member/memberRegist";
+			return "tiles/member/memberRegistContent";
 		}
 		
 	}

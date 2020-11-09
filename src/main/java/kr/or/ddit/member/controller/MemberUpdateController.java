@@ -54,7 +54,8 @@ public class MemberUpdateController extends HttpServlet {
 		
 		model.addAttribute("memberVO", memberVO);
 		
-		return "member/memberUpdate";
+//		return "member/memberUpdate";
+		return "tiles/member/memberUpdateContent";
 		
 	}
 
@@ -97,10 +98,11 @@ public class MemberUpdateController extends HttpServlet {
 		logger.debug("updateCnt : {}", updateCnt);
 		
 		if(updateCnt == 1) {
-			return "redirect:member?userid="+updateMemberVO.getUserid();
+			return "redirect:/member/memberUpdate?userid="+updateMemberVO.getUserid();
 		}
 		else {
-			return "member/memberUpdate";
+//			return "member/memberUpdate";
+			return "tiles/member/memberUpdateContent";
 		}
 	}
 

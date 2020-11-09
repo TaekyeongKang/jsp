@@ -43,7 +43,8 @@ public class MemberController extends HttpServlet {
 		
 		model.addAttribute("memberVO", memberVO);
 		
-		return "member/member";
+//		return "member/member";
+		return "tiles/member/memberContent";
 		
 		
 	}
