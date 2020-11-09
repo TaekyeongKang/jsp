@@ -78,7 +78,7 @@ public class MemberUpdateController extends HttpServlet {
 			String extension = FileUploadUtil.getExtension(realFilename);
 			logger.debug("extension : {}",extension);
 			fileName = "D:\\profile\\" + UUID.randomUUID().toString() +"."+ extension;
-			File uploadFile = new File("D:\\upload\\" + UUID.randomUUID().toString() +"."+ extension);
+			File uploadFile = new File(fileName);
 			try {
 				profile.transferTo(uploadFile);
 			} catch (IllegalStateException | IOException e) {

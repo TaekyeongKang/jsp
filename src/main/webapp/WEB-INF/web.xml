@@ -28,7 +28,8 @@
   	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
   	<init-param> <!-- 자식 컨테이너를 만들기 위해 초기화 파라미터 등록 -->
   		<param-name>contextConfigLocation</param-name> <!-- name : contextConfigLocation으로 고정되어있음 -->
-  		<param-value>classpath:kr/or/ddit/config/spring/application-context.xml</param-value>
+  		<param-value>classpath:kr/or/ddit/config/spring/application-context.xml
+  					 classpath:kr/or/ddit/config/spring/interceptor-context.xml</param-value>
   	</init-param>
   </servlet>
   

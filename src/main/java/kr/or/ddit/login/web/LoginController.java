@@ -45,6 +45,23 @@ public class LoginController {
 		return rangers;
 	}
 	
+	// localhost/login/json
+	// ranger() ==> Model 객체에 rangers 라는 이름의 속성이 저장됨 ==> json()
+	
+	@RequestMapping("/json")
+	public String json() {
+		return "jsonView"; 		// <bean id="jsonView" class="MappingJackson2JsonView">
+		
+				// view resolver를 두개 등록함
+				// 1. beanNameViewResolver
+				//	  viewName 해당하는 빈이 있는지 찾음
+				//	  만약 해당하는 빈(View)이 있으면 해당  View 결과를 생성
+				// 	  beanNameViewResolver 에서 찾치 못했을 경우
+				// 2. internalResourceViewResolver는 view 이름에 해당하는
+				// 	  자원이 존재하는지, 존재하지 않는지 체크하지 않고 무조건 forwarding
+				//		** viewResolver 우선순위를 가장 후순위로 미뤄야함
+	}
+	
 	
 	
 	// 클래스에 등록된 urlmapping 이 먼저 나오고

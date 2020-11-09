@@ -25,7 +25,7 @@
 		})
 
 		$('#profileDownBtn').on('click',function(){
-			document.location="/profileDownload?userid=${memberVO.userid}"
+			document.location="${cp}/member/downloadView?userid=${memberVO.userid}"
 		})
 	})
 	
@@ -59,7 +59,7 @@
 						<label for="userNm" class="col-sm-2 control-label">사용자 사진</label>
 						<div class="col-sm-10">
 <%-- 							<img alt="" src="${cp }/profile/${memberVO.filename}"> --%>
-							<img alt="" src="${cp }/member/profileImg?userid=${memberVO.userid}"><br><br>
+							<img alt="" src="${cp }/member/profileImgView?userid=${memberVO.userid}"><br><br>
 							<button id="profileDownBtn" type="button" class="btn btn-default">다운로드 : ${memberVO.realFilename }</button>
 						</div>
 					</div>

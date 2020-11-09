@@ -13,6 +13,13 @@
 		<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
 	</context:component-scan>
 	
+	<bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
+	<bean id="profileImgView" class="kr.or.ddit.mvc.view.ProfileImgView"/>
+	<bean id="downloadView" class="kr.or.ddit.mvc.view.DownloadView"/>
+	<bean class ="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order" value="0"></property>
+	</bean>		
+	
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<!-- prefix :  접두어 (사전에 고정된), 
 		     suffix : 접미어
@@ -24,6 +31,7 @@
 			=> "/WEB-INF/views/login/view.jsp"
 		-->
 		
+		<property name="order" value="1"></property>
 		<property name="prefix" value="/WEB-INF/views/"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>
@@ -51,5 +59,12 @@
 	 <!-- localhost/resources/style.css  로 요청을 하면 loaction에 지정한 곳에 가서 찾아라-->
 	 <!--  -->
 	 <mvc:resources mapping="/resources/**" location="/WEB-INF/views/exception/"></mvc:resources>
+	 								<!-- ** : 세그먼트, 여러개의 폴더구조로 되어있다.  -->
+	 								
+	 								
+	 								
+	
+		 								
+	 		
 	
 </beans>

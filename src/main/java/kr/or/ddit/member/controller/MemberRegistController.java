@@ -76,8 +76,8 @@ public class MemberRegistController extends HttpServlet {
 		logger.debug("extension : {}",extension);
 		if(profile.getSize() > 0) {
 			realFilename = profile.getOriginalFilename();
-			fileName= "D:\\upload\\" + UUID.randomUUID().toString() +"."+ extension;
-			File uploadFile = new File("D:\\upload\\" + UUID.randomUUID().toString() +"."+ extension);
+			fileName= "D:\\profile\\" + UUID.randomUUID().toString() +"."+ extension;
+			File uploadFile = new File(fileName);
 			try {
 				profile.transferTo(uploadFile);
 			} catch (IllegalStateException | IOException e) {
