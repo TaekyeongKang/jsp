@@ -39,7 +39,7 @@ public class MemberListController extends HttpServlet {
 		model.addAttribute("page", pageVO.getPage());
 		
 		
-		pageVO.setPageSize(pageVO.getPageSize() == 0 ? 7 : pageVO.getPageSize());
+		pageVO.setPageSize(pageVO.getPageSize() == 0 ? 5 : pageVO.getPageSize());
 		model.addAttribute("pageSize", pageVO.getPageSize());
 		
 		
@@ -56,5 +56,38 @@ public class MemberListController extends HttpServlet {
 		return "tiles/member/memberListContent";
 	}
 	
+	@RequestMapping("/listAjaxPage")
+	public String listAjaxPage() {
+		return "tiles/member/listAjaxPage";
+	}
+	
+	
+	// 페이지 요청 (/list)와 다르게 page, pageSize 파라미터가 반드시 존재한다는 가정으로 작성
+		@RequestMapping("/listAjaxHTML")
+		public String listAjaxHTML(PageVO pageVO, Model model) {
+			
+			logger.debug("pageVO : {}" , pageVO);
+			
+			Map<String, Object> map = memberService.selectMemberPageList(pageVO); 
+			
+			model.addAttribute("memberList", map.get("memberList"));
+			model.addAttribute("pages", map.get("pages"));
+			// 응답을 html ==> jsp로 생성
+			return "member/listAjaxHTML";
+		}
+
+	// 페이지 요청 (/list)와 다르게 page, pageSize 파라미터가 반드시 존재한다는 가정으로 작성
+	@RequestMapping("/listAjax")
+	public String listAjax(PageVO pageVO, Model model) {
+		
+		logger.debug("pageVO : {}" , pageVO);
+		
+		Map<String, Object> map = memberService.selectMemberPageList(pageVO); 
+		
+		model.addAttribute("memberList", map.get("memberList"));
+		model.addAttribute("pages", map.get("pages"));
+		
+		return "jsonView";
+	}
 
 }

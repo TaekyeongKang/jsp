@@ -48,5 +48,30 @@ public class MemberController extends HttpServlet {
 		
 		
 	}
-
+	
+	@RequestMapping("/memberAjaxPage")
+	public String memberAjaxPage(String userid, Model model) {
+		model.addAttribute("userid", userid);
+		return "tiles/member/memberAjaxPage";
+	}
+	
+	
+	@RequestMapping("/memberAjax")
+	public String memberAjax(String userid,Model model) {
+		
+		/*
+		 userid 파라미터 받기
+		 service 객체 준비 - 호출
+		 화면담당 jsp로 위임 
+		 */
+		
+		MemberVO memberVO = memberService.getMember(userid);
+		
+		model.addAttribute("memberVO", memberVO);
+		
+//		return "member/member";
+		return "jsonView";
+		
+		
+	}
 }

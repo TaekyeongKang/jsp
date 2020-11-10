@@ -1,5 +1,6 @@
 package kr.or.ddit.member.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -47,6 +48,12 @@ public class MemberVO {
 	public MemberVO(String userid, String usernm) {
 		this.userid = userid;
 		this.usernm = usernm;
+	}
+	
+	
+	
+	public String getFmt_reg_dt() {
+		return reg_dt == null? "" : new SimpleDateFormat("yyyy-MM-dd").format(reg_dt);
 	}
 
 	public String getUserid() {
