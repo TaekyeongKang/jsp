@@ -7,17 +7,18 @@
   	<typeAlias type="kr.or.ddit.member.model.MemberVO" alias="MemberVO"/>
   	<typeAlias type="kr.or.ddit.member.model.PageVO" alias="PageVO"/>
   </typeAliases>
-  <environments default="development">
-    <environment id="development">
-      <transactionManager type="JDBC"/>
-      <dataSource type="POOLED">
-        <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
-        <property name="url" value="jdbc:oracle:thin:@localhost:1521/xe"/>
-        <property name="username" value="KTK"/>
-        <property name="password" value="java"/>
-      </dataSource>
-    </environment>
-  </environments>
+  		<!-- connection pool 설정하는것 중복되브로 지움 (datasource-context.xml) -->
+<!--   <environments default="development"> -->
+<!--     <environment id="development"> -->
+<!--       <transactionManager type="JDBC"/> -->
+<!--       <dataSource type="POOLED"> connectionPool을 관리하는 자바의 표준 api -->
+<!--         <property name="driver" value="oracle.jdbc.driver.OracleDriver"/> -->
+<!--         <property name="url" value="jdbc:oracle:thin:@localhost:1521/xe"/> -->
+<!--         <property name="username" value="KTK"/> -->
+<!--         <property name="password" value="java"/> -->
+<!--       </dataSource> -->
+<!--     </environment> -->
+<!--   </environments> -->
   <mappers>
     <mapper resource="kr/or/ddit/config/db/mapper/member.xml"/>
   </mappers>

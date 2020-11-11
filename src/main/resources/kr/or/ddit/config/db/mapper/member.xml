@@ -31,7 +31,7 @@
   
   <insert id="insertMember" parameterType="MemberVO">
   	INSERT INTO users 
-  	VALUES(#{userid}, #{usernm}, #{pass}, SYSDATE, #{alias}, #{addr1}, #{addr2}, #{zipcode}, #{filename=jdbcType.VARCHAR}, #{realFilename})
+  	VALUES(#{userid}, #{usernm}, #{pass}, SYSDATE, #{alias}, #{addr1}, #{addr2}, #{zipcode}, #{filename}, #{realFilename})
   </insert>
   
   <delete id="deleteMember" parameterType="String">
