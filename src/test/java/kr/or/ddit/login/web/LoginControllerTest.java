@@ -9,6 +9,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 import org.junit.Test;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -33,6 +34,7 @@ public class LoginControllerTest extends WebTestConfig { // 공통된 어노테�
 	@Test
 	public void processSuccessTest() throws Exception {
 		mockMvc.perform(post("/login/process")
+						.contentType(MediaType.APPLICATION_FORM_URLENCODED)	// 인자로 받는 @Requestbody 때문에 헤더 정보를 명확하게 명시해주기 위해 설정
 						.param("userid", "brown")
 						.param("pass", "brownPass"))
 			   .andExpect(status().is(200))
@@ -44,6 +46,7 @@ public class LoginControllerTest extends WebTestConfig { // 공통된 어노테�
 	@Test
 	public void processFailTest() throws Exception {
 		MvcResult result = mockMvc.perform(post("/login/process")
+											.contentType(MediaType.APPLICATION_FORM_URLENCODED)
 											.param("userid", "brown")
 											.param("pass", "brownPassFail"))
 								  .andReturn();  

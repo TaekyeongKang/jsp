@@ -45,19 +45,17 @@ public class MemberService implements MemberServiceI {
 	@Override
 	public Map<String, Object> selectMemberPageList(PageVO pageVO) {
 		
-		SqlSession sqlSession = MybatisUtil.getSqlSession();
 		
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("memberList", memberDao.selectMemberPageList(sqlSession,pageVO));
+		map.put("memberList", memberDao.selectMemberPageList(pageVO));
 		
 		//15건, 페이지 사이즈를 7로 가정했을 때 3개의 페이지가 나와야 한다. 
-		int totalCnt = memberDao.selectMemberTotalCnt(sqlSession);
+		int totalCnt = memberDao.selectMemberTotalCnt();
 		int pageSize = pageVO.getPageSize();
 		int pages = (int)(Math.ceil((double)totalCnt/pageSize));
 		map.put("pages", pages);
 		
-		sqlSession.close();
 		return map;
 	}
 

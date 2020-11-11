@@ -19,7 +19,7 @@ public class MemberRegistControllerTest extends WebTestConfig {
 	@Test
 	public void memberRegistTest() throws Exception {
 		mockMvc.perform(get("/member/memberRegist"))
-				.andExpect(view().name("member/memberRegist"));
+				.andExpect(view().name("tiles/member/memberRegistContent"));
 	}
 	
 	
@@ -30,7 +30,7 @@ public class MemberRegistControllerTest extends WebTestConfig {
 		MockMultipartFile profile = new MockMultipartFile("profile","sally.png", "image/png", is);
 		mockMvc.perform(fileUpload("/member/registProcess")
 						.file(profile)
-						.param("userid", "aa")
+						.param("userid", "bb")
 						.param("usernm", "aa")
 						.param("alias", "aa")
 						.param("pass", "aa")
@@ -49,14 +49,14 @@ public class MemberRegistControllerTest extends WebTestConfig {
 			mockMvc.perform(fileUpload("/member/registProcess")
 							.file(profile)
 							.param("userid", "aa")
-							.param("usernm", "aa")
+							.param("usernm", "bb")
 							.param("alias", "aa")
 							.param("pass", "aa")
 							.param("addr1", "aa")
 							.param("addr2", "aa")
 							.param("zipcode", "11111")
 							)
-					.andExpect(view().name("member/memberRegist"));
+					.andExpect(view().name("tiles/member/memberRegistContent"));
 		}
 
 

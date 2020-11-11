@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- 1. datasource : connection pool - 필요한것 : url, drive, username, password
+		 2. SqlSessionFactoryBean : datasource를 이용하여 mybatis 설정을 담당
+		 3. SqlSessionTemplate : SqlSessionFactory 객체로부터 생성하며 
+		 						 mybatis를 통해 sql을 실행할 수 있는 객체 (sqlSession) 
+	-->
+	<!-- 1 -->
+	<context:property-placeholder location="classpath:kr/or/ddit/config/db/db_dev.properties"/>
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="url" value="${jdbc.url}"/>
+		<property name="driverClassName" value="${jdbc.driver}"/>
+		<property name="username"  value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+	</bean>
+	
+	<!-- 2 -->
+	<!-- mybatisUtill 역할 -->
+	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation" value="classpath:kr/or/ddit/config/db/mybatis-config.xml" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<!-- 3 -->
+	<!-- sqlSession -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<!--  인자가 0개인 기본생성자가 없어서 오류남 => 최소한 sqlSessionFactory 는 인자로 넘겨야 함 -->
+		<constructor-arg ref="sqlSessionFactoryBean" />
+	</bean>
+	
+</beans>

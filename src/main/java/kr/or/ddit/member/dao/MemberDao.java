@@ -48,7 +48,7 @@ public class MemberDao implements MemberDaoI{
 	}
 
 	@Override
-	public List<MemberVO> selectMemberPageList(SqlSession sqlSession, PageVO pageVO) {
+	public List<MemberVO> selectMemberPageList(PageVO pageVO) {
 		
 		//SqlSession sqlSession = MybatisUtil.getSqlSession();	
 		
@@ -60,7 +60,7 @@ public class MemberDao implements MemberDaoI{
 	}
 
 	@Override
-	public int selectMemberTotalCnt(SqlSession sqlSession) {
+	public int selectMemberTotalCnt() {
 		
 		//SqlSession sqlSession = MybatisUtil.getSqlSession();
 		

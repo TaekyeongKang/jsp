@@ -19,7 +19,7 @@ public class MemberUpadateControllerTest extends WebTestConfig{
 	public void memberUpdateTest() throws Exception {
 		mockMvc.perform(get("/member/memberUpdate")
 						.param("userid", "aa"))
-				.andExpect(view().name("member/memberUpdate"));
+				.andExpect(view().name("tiles/member/memberUpdateContent"));
 	}
 
 	// 멤버 업데이트 테스트 (정상적인 경우)
@@ -38,7 +38,7 @@ public class MemberUpadateControllerTest extends WebTestConfig{
 						.param("addr2", "aa")
 						.param("zipcode", "11111")
 				)
-		.andExpect(view().name("redirect:member?userid=aa"))
+		.andExpect(view().name("redirect:/member/memberUpdate?userid=aa"))
 		.andExpect(status().is(302));
 	}
 	
@@ -57,6 +57,6 @@ public class MemberUpadateControllerTest extends WebTestConfig{
 				.param("addr1", "aa")
 				.param("addr2", "aa")
 				.param("zipcode", "11111"))
-		.andExpect(view().name("member/memberUpdate"));
+		.andExpect(view().name("tiles/member/memberUpdateContent"));
 	}
 }

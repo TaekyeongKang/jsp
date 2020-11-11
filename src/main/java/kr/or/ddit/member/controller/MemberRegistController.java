@@ -90,25 +90,26 @@ public class MemberRegistController extends HttpServlet {
 		memberVO.setFilename(fileName);
 		memberVO.setRealFilename(realFilename);
 		logger.debug("사용자 등록용 memberVO : {}", memberVO);
-		
-		int insertCnt = memberService.insertMember(memberVO);
+		int insertCnt = 0;
+		try {
+			insertCnt = memberService.insertMember(memberVO);
+			// 1건이 입력되었을 때 : 정상 -> memberList 페이지로 이동
+			// 1건이 아닐 때 : 비정상 -> 사용자가 데이터를 다시 입력할 수 있도록 등록페이지로 이동
+			if(insertCnt == 1) {
+				//request.getRequestDispatcher("/memberList").forward(request, response);
+				// forward 방식으로 memberList 페이지 호출 : memberListServlet 의 doPost()메서드 실행하겠다.
+				// memberListServlet 의 doPost()메서드 에서 doGet() 메서드 호출
+				// but 새로고침하면 오류 
+				// redirect  방식
+				return "redirect:/member/memberList";
+			}
+		} catch (Exception e) {
+		}
 		logger.debug("insertCnt : {}", insertCnt);
 		
-		// 1건이 입력되었을 때 : 정상 -> memberList 페이지로 이동
-		// 1건이 아닐 때 : 비정상 -> 사용자가 데이터를 다시 입력할 수 있도록 등록페이지로 이동
-		if(insertCnt == 1) {
-			//request.getRequestDispatcher("/memberList").forward(request, response);
-			// forward 방식으로 memberList 페이지 호출 : memberListServlet 의 doPost()메서드 실행하겠다.
-			// memberListServlet 의 doPost()메서드 에서 doGet() 메서드 호출
-			// but 새로고침하면 오류 
-			// redirect  방식
-			return "redirect:/member/memberRegist";
-		}
-		else {
 			// 사용자가 입력했던 정보를 담은 파라미터를 다시 가져가게끔 설정
 //			return "member/memberRegist";
 			return "tiles/member/memberRegistContent";
-		}
 		
 	}
 	

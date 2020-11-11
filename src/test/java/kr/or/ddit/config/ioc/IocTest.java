@@ -1,14 +1,18 @@
 package kr.or.ddit.config.ioc;
 
+import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import kr.or.ddit.board.service.BoardService;
 import kr.or.ddit.board.service.BoardServiceI;
 
 public class IocTest {
+	
 	private static final Logger logger = LoggerFactory.getLogger(IocTest.class);
 	
 	public static void main(String[] args) {

@@ -86,13 +86,13 @@ public class LoginController {
 	// Model : view 객체에서 응답을 생성할 때 참조할 데이터를 담는 객체
 	// 		   jsp/servlet 기반의 request 역할을 담당
 	@RequestMapping("/process")
-	public String process(String userid, String pass, MemberVO memberVO,
+	public String process(String userid, String pass,MemberVO memberVO,
 						  @RequestBody String body,
 						  HttpSession session, Model model,
 						  @RequestParam(name="email", 
 						  				required=false, 
 						  				defaultValue = "brown@link.kr") String user_id) {
-		logger.debug("LoginController.process() {} / {} / {}", userid, pass, memberVO);
+//		logger.debug("LoginController.process() {} / {} / {}", userid, pass, memberVO);
 		
 		logger.debug("user_id : {}", user_id);
 		MemberVO dbMemberVO = memberService.getMember(userid);

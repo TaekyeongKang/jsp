@@ -18,7 +18,17 @@ public class MemberListControllerTest extends WebTestConfig{
 		mockMvc.perform(get("/member/memberList")
 						.param("page", "1")
 						.param("pageSize", "7"))
-				.andExpect(view().name("member/memberList"))
+				.andExpect(view().name("tiles/member/memberListContent"))
+				.andExpect(status().isOk());
+	}
+	
+	@Test
+	public void listAjaxPageTest() throws Exception {
+		PageVO pageVO = new PageVO();
+		mockMvc.perform(get("/member/listAjaxPage")
+						.param("page", "1")
+						.param("pageSize", "7"))
+				.andExpect(view().name("tiles/member/listAjaxPage"))
 				.andExpect(status().isOk());
 	}
 
