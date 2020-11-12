@@ -8,7 +8,7 @@
 	<!-- interceptor 설정 -->
 <!-- 	<mvc:interceptors> -->
 <!-- 		<mvc:interceptor> -->
-<!-- 			<mvc:mapping path="/**"/> /** : 전체경로로 설정 -->
+<!-- 			<mvc:mapping path="/**"/>  /** : 전체경로로 설정   -->
 <!-- 			<bean class="kr.or.ddit.mvc.interceptor.PerformanceCheckIntercetor"></bean> -->
 <!-- 		</mvc:interceptor> -->
 <!-- 		<mvc:interceptor> -->

@@ -93,14 +93,15 @@ public class MemberUpdateController extends HttpServlet {
 		
 		
 		logger.debug("updateMemberVO : {}", updateMemberVO);
-		int updateCnt = memberService.updateMember(updateMemberVO);
+		int updateCnt  = memberService.updateMember(updateMemberVO);
+			
 		
 		logger.debug("updateCnt : {}", updateCnt);
 		
+		
 		if(updateCnt == 1) {
-			return "redirect:/member/memberUpdate?userid="+updateMemberVO.getUserid();
-		}
-		else {
+			return "redirect:/member/memberAjaxPage?userid="+updateMemberVO.getUserid();
+		}else {
 //			return "member/memberUpdate";
 			return "tiles/member/memberUpdateContent";
 		}

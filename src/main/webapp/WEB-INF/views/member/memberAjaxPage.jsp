@@ -12,7 +12,7 @@
 
 		
 		$('#updateBtn').on('click',function(){
-			var userid = "${memberVO.userid}";
+			var userid = "${param.userid}";
 			document.location="/member/memberUpdate?userid="+ userid;
 		})
 
