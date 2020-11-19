@@ -46,7 +46,6 @@ public class MemberController extends HttpServlet {
 //		return "member/member";
 		return "tiles/member/memberContent";
 		
-		
 	}
 	
 	@RequestMapping("/memberAjaxPage")
@@ -71,7 +70,6 @@ public class MemberController extends HttpServlet {
 		
 //		return "member/member";
 		return "jsonView";
-		
 		
 	}
 }
