@@ -1,0 +1,39 @@
+spring batch
+개발자가 만들어야 하는 부분
+   클래스			|  구현방법
+---------------------------------------------------------------------------------   
+1. reader		: implements ItemReader<T>
+							-- generic <T> : type 의 약자, 주로 객체 들어옴
+
+2. processor	: implements ItemProcessor<I, O>
+							-- generic <I> : input 의 약자, 원천, 가공해야 할 대상
+							-- generic <O> : output 의 약자, 가공된 데이터
+						
+3. writer		: implements ItemWriter<T>
+
+
+package : kr.or.ddit.batch.basic
+BasicReader<String>
+BasicProcessor<String, String>
+BasicWriter<String>
+
+
+Cron 초 분 시 일 월 요일
+모든 값 : *
+1 * * * * *   ) 매 1초마다 실행 (1분 1초, 2분 1초.... n분 1초)
+*/5 * * * * * ) 5초마다 실행
+
+
+
+
+
+배치 실습
+발효유 배치 
+cycle 정보를 조회하여 해당 애음 요일에 해당하는 일자를 계산
+daily 테이블에 데이터를 입력
+
+reader		: cycle 테이블 정보를 조회 - mybatis 사용 가능
+				SELECT *
+				  FROM cycle;
+processor	: 애음요일을 실제 일자로 바꾸는 작업 ( 1==> 4~6건)
+writer		: daily 테이블에 정보를 저장 - mybatis 사용 가능

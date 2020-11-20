@@ -6,6 +6,8 @@
   <typeAliases>
   	<typeAlias type="kr.or.ddit.member.model.MemberVO" alias="MemberVO"/>
   	<typeAlias type="kr.or.ddit.member.model.PageVO" alias="PageVO"/>
+  	<typeAlias type="kr.or.ddit.batch.yogurt.model.CycleVO" alias="CycleVO"/>
+  	<typeAlias type="kr.or.ddit.batch.yogurt.model.DailyVO" alias="DailyVO"/>
   </typeAliases>
   		<!-- connection pool 설정하는것 중복되브로 지움 (datasource-context.xml) -->
 <!--   <environments default="development"> -->
@@ -21,5 +23,6 @@
 <!--   </environments> -->
   <mappers>
     <mapper resource="kr/or/ddit/config/db/mapper/member.xml"/>
+    <mapper resource="kr/or/ddit/config/db/mapper/yogurt.xml"/>
   </mappers>
 </configuration>
